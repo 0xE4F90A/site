@@ -1,0 +1,88 @@
+/* タブレット向けレイアウト */
+
+@media all and (max-width: 1000px) {
+
+  .modal {
+    left: 25%;
+  }
+
+  .web {
+    width: 50%;
+    margin-bottom: 50px;
+  }
+
+  .web-group {
+    display: block;
+    }
+
+  .site2 {
+    width: 50%;
+    text-align: center;
+    display: block;
+    margin: 2em auto;
+  }
+
+  footer {
+    text-align: center;
+  }
+
+  .top-wrapper h1 {
+    font-size: 40px;
+  }
+
+  .heading h2 {
+    font-size: 20px;
+  }
+}
+
+/* スマホ向けレイアウト */
+@media all and (max-width: 670px) {
+
+  .modal {
+    left: 0%;
+  }
+
+  .site {
+    width: 100%;
+    margin: 1em 0;
+  }
+
+  .web-group {
+    display: block;
+  }
+
+  .site2 {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin: 1.5em 0;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .facebook {
+    margin-bottom: 10px;
+  }
+  
+  .top-wrapper {
+    text-align: left;
+  }
+
+  .header-right {
+    display: none;
+  }
+  
+  .menu-icon {
+    display: block;
+  }
+  
+  .top-wrapper h1 {
+    font-size: 24px;
+  }
+
+  .top-wrapper p {
+    font-size: 14px;
+  }
+}
