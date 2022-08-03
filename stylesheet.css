@@ -226,7 +226,7 @@ main {
 
 .site2 {
   align-items: stretch;
-  margin: 4%;
+  margin: 4% 0;
   width: 25%;
   font-size: 2em;
   color: #fff;
