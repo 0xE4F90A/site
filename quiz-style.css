@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&display=swap');
+
+html,body{
+  height: 100%;
+}
+
+body {
+  background-color:#000000
+}
+
+#particles-js{ 
+  position:fixed;
+  z-index:-1;
+  width: 100%;
+  height: 100%;
+  background-color:#000000;
+}
+
+#wrapper{
+  position: relative;
+  z-index: 1;
+  width:100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h3, a, li, p {
+  color: white;
+  text-decoration: none;
+}
+
+
+h1, h2 {
+  color: aliceblue;
+  text-align: center;
+  border-bottom: 1px solid #ffffff;
+}
+
+ul li, ol li {
+  padding: 1em;
+  list-style-position: inside;
+}
+
+ol.answers {
+  list-style: upper-alpha;
+}
+
+ol.answers li:hover {
+  border: 0.1em solid #1e366a;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 0.9em;
+  cursor: pointer;
+}
+
+#section-correct-answer {
+  display: none;
+}
+
+.invisibility {
+  display: none;
+}
+
+.open {
+  margin: 100% 0 0 85%;
+  position: absolute;
+  border-color: transparent;
+  background: transparent;
+  color: transparent;
+}
+
+#correct-answer {
+  font-weight: bold;
+  color: #f05959;
+}
+
+#main {
+  padding: 0 1.5em;
+}
+
+.section {
+  margin-top: 2em;
+}
+
+.next-quiz {
+  position: absolute;
+  right: 0;
+  left: auto;
+  padding: 0 0.5em;
+  margin-right: 1em;
+}
+
+.next-quiz:hover {
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
