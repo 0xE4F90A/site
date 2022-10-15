@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 100px;
+}
+
+#play-song, #stop {
+  width: 25%;
+}
+
+button {
+  width: 50%;
+  cursor: pointer;
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  background-color: #4684ffbe;
+  color: #fff;
+  padding: 8px 16px;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+a {
+  color: #00aff4;
+  text-decoration: none;
+}
+
+img {
+  text-indent: -9999px;
+  background-size: 100%;
+  height: 340px;
+  width: 340px;
+}
