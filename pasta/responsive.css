@@ -1,0 +1,14 @@
+/* スマホ向けレイアウト */
+@media all and (max-width: 670px) {
+  h1 {
+    margin-top: 25px;
+  }
+
+  #play-song, #stop {
+    width: 75%;
+  }
+
+  button {
+    width: 75%;
+  }
+}
