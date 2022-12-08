@@ -25,23 +25,23 @@ const masterPasta = (e, i) => {
 
 $audio.forEach(e => e.volume = 0.5);
 
-$playSong.addEventListener('click', () => {
+$playSong.addEventListener('mousedown', () => {
   $song.load();
   $song.play();
 });
 
-$stop.addEventListener('click', () => {
+$stop.addEventListener('mousedown', () => {
   $audio.forEach(e => e.pause());
 });
 
-$button1.addEventListener('click', () => {
+$button1.addEventListener('mousedown', () => {
   masterPasta($pasta, 600)
 });
 
-$button2.addEventListener('click', () => {
+$button2.addEventListener('mousedown', () => {
   masterPasta($makePasta, 1900);
 });
 
-$button3.addEventListener('click', () => {
+$button3.addEventListener('mousedown', () => {
   masterPasta($makePasta2, 2200);
 });
