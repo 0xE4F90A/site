@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Blender Shortcuts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="サイト説明: Blender主要ショートカット集" />
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="stylesheet" href="blender.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+  <script src="main.js" defer></script>
+  <script src="smoothscroll.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <div id="nav">
+      <h1 id="logo"><a href="#top">Blender Shortcut</a></h1>
+      <div id="menubar">
+        <ul class="nav-links">
+          <li><a href="#main">Main</a></li>
+          <li><a href="#mode">Mode</a></li>
+          <li><a href="#edit">Edit</a></li>
+          <li><a href="#other">Other</a></li>
+          <li><a href="#link">Link</a></li>
+          
+        </ul>
+        <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div id="top" class="contents">
+      <h1 class="b-site"><a href="https://www.blender.org/" target="_blank">Blender<i
+            class="fa-solid fa-arrow-up-right-from-square fa-bounce"></i></a></h1>
+      <ul>
+        <li></li>
+      </ul>
+    </div>
+
+    <div class="contents shortcut">
+      <section>
+        <h2 id="main">Main Shortcut</h2>
+        <table class="ta1">
+          <tr>
+            <th>マウスホイールドラッグ</th>
+            <td>視点の回転</td>
+          </tr>
+          <tr>
+            <th>Shift + マウスホイールドラッグ</th>
+            <td>視点の平行移動</td>
+          </tr>
+          <tr>
+            <th>マウスホイール前後</th>
+            <td>視点ズーム </td>
+          </tr>
+          <tr>
+            <th>Tab</th>
+            <td>モード切り替え</td>
+          </tr>
+          <tr>
+            <th>T</th>
+            <td>ツールバーの表示/非表示</td>
+          </tr>
+          <tr>
+            <th>N</th>
+            <td>サイドバーの表示/非表示</td>
+          </tr>
+          <tr>
+            <th>Numpad 1</th>
+            <td>正面 から見る</td>
+          </tr>
+          <tr>
+            <th>Numpad 3</th>
+            <td>側面 から見る</td>
+          </tr>
+          <tr>
+            <th>Numpad 7</th>
+            <td>上面 から見る</td>
+          </tr>
+        </table>
+        <h2 id="mode">Mode Shorcut</h2>
+        <table class="ta1">
+          <tr>
+            <th>G (+X, +Y, +Z) (+有理数)</th>
+            <td>オブジェクトの移動(Grab:掴む)</td>
+            <td>例) GX -> X座標の方向にだけ動かせる</td>
+            <td>例) GZ10 -> Z座標の方向に10m動かす</td>
+          </tr>
+          <tr>
+            <th>G (+XX, +YY, +ZZ) (+有理数)</th>
+            <td></td>
+            <td>動かす軸をローカル軸に変更する</td>
+          </tr>
+          <tr>
+            <th>Alt + G</th>
+            <td></td>
+            <td><span class="bold c-red">オブジェクトモードで動かした</span>Gの値をリセットする</td>
+          </tr>
+          <tr>
+            <th>S (+X, +Y, +Z) (+有理数)</th>
+            <td>オブジェクトの拡大/縮小(Scal:大きさ)</td>
+            <td>例) SX -> Y座標の方向にだけ大きさを変えられる</td>
+            <td>例) SY10 -> Y座標の方向に10倍大きくする</td>
+          </tr>
+          <tr>
+            <th>S (+XX, +YY, +ZZ) (+有理数)</th>
+            <td></td>
+            <td>拡大/縮小軸をローカル軸に変更する</td>
+          </tr>
+          <tr>
+            <th>Alt + S</th>
+            <td></td>
+            <td><span class="bold c-red">オブジェクトモードで動かした</span>Sの値をリセットする</td>
+          </tr>
+          <tr>
+            <th>R (+X, +Y, +Z) (+有理数)</th>
+            <td>オブジェクトの回転(Rotate:回転)</td>
+            <td>例) RZ -> Z座標の方向にだけ回転できる</td>
+            <td>例) RX10 -> X座標の方向に10度回転させる</td>
+          </tr>
+          <tr>
+            <th>R (+XX, +YY, +ZZ) (+有理数)</th>
+            <td></td>
+            <td>回転軸をローカル軸に変更する</td>
+          </tr>
+          <tr>
+            <th>Alt + R</th>
+            <td></td>
+            <td><span class="bold c-red">オブジェクトモードで動かした</span>Rの値をリセットする</td>
+          </tr>
+          <tr>
+            <th>Shift + D</th>
+            <td>オブジェクトの複製</td>
+          </tr>
+          <tr>
+            <th>Alt + D</th>
+            <td>オブジェクトのリンク複製</td>
+            <td>編集モードで動かすとリンク複製したオブジェクトも同じ挙動をとる</td>
+          </tr>
+          <tr>
+            <th>H</th>
+            <td>オブジェクトの非表示</td>
+          </tr>
+          <tr>
+            <th>Alt + H</th>
+            <td>オブジェクトの再表示</td>
+          </tr>
+          <tr>
+            <th>W</th>
+            <td>カーソル種類切り替え</td>
+          </tr>
+          <tr>
+            <th>Shift + C</th>
+            <td>3Dカーソル位置リセット</td>
+          </tr>
+          <tr>
+            <th>X</th>
+            <td>削除</td>
+          </tr>
+          <tr>
+            <th>Q</th>
+            <td>お気に入りメニューの表示</td>
+          </tr>
+          <tr>
+            <th>A</th>
+            <td>全選択</td>
+          </tr>
+          <tr>
+            <th>Alt + A</th>
+            <td>全選択解除</td>
+          </tr>
+          <tr>
+            <th>Shift + Z</th>
+            <td>透過表示切り替え</td>
+          </tr>
+          <tr>
+            <th>Shift + S</th>
+            <td>パイメニュー表示</td>
+          </tr>
+          <tr>
+            <th>Ctrl + Alt + Q</th>
+            <td>画面4分割</td>
+          </tr>
+          <tr>
+            <th>Home</th>
+            <td>すべてのオブジェクトを画面内に入れる</td>
+          </tr>
+        </table>
+
+        <h2 id="edit">Edit Mode Shorcut</h2>
+        <table class="ta1">
+          <tr>
+            <th>Shift + A</th>
+            <td>オブジェクト追加</td>
+          </tr>
+          <tr>
+            <th>1</th>
+            <td>頂点選択モード</td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td>辺選択モード</td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td>面選択モード</td>
+          </tr>
+          <tr>
+            <th>E</th>
+            <td>押し出し</td>
+          </tr>
+          <tr>
+            <th>Alt + E</th>
+            <td>押し出しメニュー表示</td>
+          </tr>
+          <tr>
+            <th>Alt + S</th>
+            <td>法線方向に拡大する</td>
+          </tr>
+          <tr>
+            <th>I</th>
+            <td>面を差し込む</td>
+          </tr>
+          <tr>
+            <th>F</th>
+            <td>面はり</td>
+          </tr>
+          <tr>
+            <th>J</th>
+            <td>面にくっついた状態で</td>
+          </tr>
+          <tr>
+            <th>M</th>
+            <td>2つ以上の頂点を結合させる</td>
+          </tr>
+          <tr>
+            <th>O(オー)</th>
+            <td>プロポーショナル編集</td>
+          </tr>
+          <tr>
+            <th>K</th>
+            <td>ナイフツール</td>
+          </tr>
+          <tr>
+            <th>Ctrl + 右クリック</th>
+            <td>新しく頂点・辺・面を作成</td>
+          </tr>
+          <tr>
+            <th>Ctrl + R</th>
+            <td>ループカット</td>
+            <td>確定クリックする前にホイール前後でループカット数を変更できる, 右クリックで初期位置に戻す</td>
+          </tr>
+          <tr>
+            <th>Ctrl + B</th>
+            <td>ベベル(面取り)</td>
+            <td>確定クリックする前にホイール前後でベベル解像度を変更できる</td>
+          </tr>
+          <tr>
+            <th>Shift + Ctrl + B</th>
+            <td>頂点ベベル</td>
+            <td>確定クリックする前にホイール前後でベベル解像度を変更できる</td>
+          </tr>
+          <tr>
+            <th>Alt + 左クリック</th>
+            <td>ループ選択</td>
+          </tr>
+          <tr>
+            <th>Ctrl + L</th>
+            <td>選択メッシュと繋がる全てのメッシュを選択状態にする</td>
+          </tr>
+          <tr>
+            <th>選択 -> Shift + N</th>
+            <td>選択箇所の面の向きを外側にそろえる</td>
+          </tr>
+          <tr>
+            <th>Ctrl + I</th>
+            <td>選択を反転させる</td>
+          </tr>
+          <tr>
+            <th>Shift + Ctrl + Alt + S</th>
+            <td>せん断</td>
+          </tr>
+          <tr>
+            <th>Shift + Alt + S</th>
+            <td>メッシュを球体化</td>
+          </tr>
+          <tr>
+            <th>Ctrl + F -> グリッドフィル</th>
+            <td>必ず偶数の頂点で埋める必要がある</td>
+          </tr>
+        </table>
+        <h2 id="other">Others Shorcut</h2>
+        <table class="ta1">
+          <tr>
+            <th>Ctrl + S</th>
+            <td>保存</td>
+          </tr>
+          <tr>
+            <th>Ctrl + C</th>
+            <td>コピー</td>
+          </tr>
+          <tr>
+            <th>Ctrl + V</th>
+            <td>貼り付け</td>
+          </tr>
+          <tr>
+            <th>Ctrl + X</th>
+            <td>切り取り</td>
+          </tr>
+          <tr>
+            <th>Ctrl + Z</th>
+            <td>直前の操作を取り消す</td>
+          </tr>
+          <tr>
+            <th>Ctrl + Y | Shift + Ctrl + Z</th>
+            <td>直前の操作を繰り返す</td>
+          </tr>
+          <tr>
+            <th>F2</th>
+            <td>名前を変更</td>
+          </tr>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <footer id="link" class="contents">
+    <section>
+      <h2>Link</h2>
+
+      <table class="ta2">
+        <tr>
+          <th>
+            <a href="https://www.youtube.com/watch?v=CxzC7GSs_5o" target="_blank">役立つBlenderの機能108選</a>
+          </th>
+          <td>ショートカットやBlenderの知識理解が深まるので一度は観ることを強くおススメします。</td>
+        </tr>
+        <tr>
+          <th>
+            <a href="#" target="_blank">準備中</a>
+          </th>
+          <td>随時追加</td>
+        </tr>
+        <tr>
+          <th>
+            <a href="#" target="_blank">準備中</a>
+          </th>
+          <td>随時追加</td>
+        </tr>
+        <tr>
+          <th>
+            <a href="#" target="_blank">準備中</a>
+          </th>
+          <td>随時追加</td>
+        </tr>
+        <tr>
+          <th>
+            <a href="#" target="_blank">準備中</a>
+          </th>
+          <td>随時追加</td>
+        </tr>
+        <tr>
+          <th>
+            <a href="#" target="_blank">準備中</a>
+          </th>
+          <td>随時追加</td>
+        </tr>
+        <th>
+          <a href="#" target="_blank">準備中</a>
+        </th>
+        <td>随時追加</td>
+        </tr>
+        <th>
+          <a href="#" target="_blank">準備中</a>
+        </th>
+        <td>随時追加</td>
+        </tr>
+        <th>
+          <a href="#" target="_blank">準備中</a>
+        </th>
+        <td>随時追加</td>
+        </tr>
+        <th>
+          <a href="#" target="_blank">準備中</a>
+        </th>
+        <td>随時追加</td>
+        </tr>
+        <th>
+          <a href="#" target="_blank">準備中</a>
+        </th>
+        <td>随時追加</td>
+        </tr>
+        <th>
+          <a href="#" target="_blank">準備中</a>
+        </th>
+        <td>随時追加</td>
+        </tr>
+        <th>
+          <a href="#" target="_blank">準備中</a>
+        </th>
+        <td>随時追加</td>
+        </tr>
+        <th>
+          <a href="#" target="_blank">準備中</a>
+        </th>
+        <td>随時追加</td>
+        </tr>
+        <th>
+          <a href="#" target="_blank">準備中</a>
+        </th>
+        <td>随時追加</td>
+        </tr>
+      </table>
+    </section>
+    <p>「このショートカット追加してほしい!」みたいなのがあればTwitterDMもしくはDiscord等で言ってください。</p>
+    <div class="sns">
+      <a  href="https://twitter.com/0xE4F90A" target="_blank">Twitter</a>
+    </div>
+    
+    <p class="copyright" class="copyright">&copy; 2023-<script>document.write(new Date().getFullYear());</script> undefined_4.
+    </p>
+  </footer>
+  <a id="top-button" href="#top">^</a>
+</body>
+
+</html>
