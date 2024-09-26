@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Visual Studio Custom Shortcuts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="サイト説明: VisualStudio主要ショートカット集" />
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+    <script src="main.js" defer></script>
+    <script src="smoothscroll.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div id="nav">
+            <h1 id="logo"><a href="#top">VisualStudio Shortcut</a></h1>
+            <div id="menubar">
+                <ul class="nav-links">
+                    <li><a href="#main">Main</a></li>
+                    <li><a href="#other">Other</a></li>
+                    <li><a href="#link">Link</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="top" class="contents">
+            <h1 class="b-site"><a
+                    href="https://visualstudio.microsoft.com/ja/downloads/?cid=learn-onpage-download-install-visual-studio-page-cta"
+                    target="_blank">VisualStudio<i class="fa-solid fa-arrow-up-right-from-square fa-bounce"></i></a>
+            </h1>
+            <h1 class="b-site"><a href="VSCustomSetting.vssettings" download="VSCustomSetting.vssettings">Custom
+                    Shortcut<i class="fas fa-download"></i></a>
+            </h1>
+        </div>
+
+        <div class="contents shortcut">
+            <section>
+                <h2 id="main">Shortcut</h2>
+                <table class="ta1">
+                    <tr>
+                        <th>Ctrl + /</th>
+                        <td>// カーソルがある行のコメント切り替え</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + D</th>
+                        <td>// 同一単語の複数選択</td>
+                    </tr>
+                    <tr>
+                        <th>Alt + ↑ or ↓</th>
+                        <td>// カーソルがある行を、上もしくは下に移動</td>
+                    </tr>
+                    <tr>
+                        <th>Shift + Alt + ↑ or ↓</th>
+                        <td>// カーソルがある行を、上もしくは下に複製</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + Alt + クリック</th>
+                        <td>// クリックした個所にカーソルを複製 既にカーソルがある場合、カーソルを削除</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + Alt + ↑ or ↓</th>
+                        <td>// カーソルがある行から、上もしくは下にカーソルを複製</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + クリック</th>
+                        <td>// 変数もしくは関数の定義に移動</td>
+                    </tr>
+                    <tr>
+                        <th>Shift + Alt + ドラッグ</th>
+                        <td>// カーソルから縦軸変更せず複数行選択可能</td>
+                    </tr>
+                    <tr>
+                        <th>F5</th>
+                        <td>// デバッグの実行</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + F</th>
+                        <td>// 検索画面の表示</td>
+                    </tr>
+                    <tr>
+                        <th>Shift + Alt + F</th>
+                        <td>// コードの自動整形</td>
+                    </tr>
+                </table>
+
+                <h2 id="other">Others Shortcut</h2>
+                <table class="ta1">
+                    <tr>
+                        <th>Ctrl + S</th>
+                        <td>// 保存</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + C</th>
+                        <td>// コピー</td>
+                        <td>/* 選択していない場合、カーソルのある行をコピーできる */</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + X</th>
+                        <td>// 切り取り</td>
+                        <td>/* 選択していない場合、カーソルのある行をカットできる 使わない行を一括で削除可能 */</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + V</th>
+                        <td>// 貼り付け</td>
+                    </tr>
+                    <tr>
+                        <th>Windows + V</th>
+                        <td>// クリップボードに溜められている過去のコピーを閲覧・ペースト可能</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + Z</th>
+                        <td>// 直前の操作を取り消す</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + Y</th>
+                        <td>// 直前の操作を繰り返す</td>
+                    </tr>
+                    <tr>
+                        <th>Shift + Alt</th>
+                        <td>// 右下の A/あ ⇔ ENG 切り替え</td>
+                        <td>/* 日本語が入力できなくなる原因の9割がこいつのせい */</td>
+                    </tr>
+                    <tr>
+                        <th>F2</th>
+                        <td>// 名前を変更</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + Shift + Esc</th>
+                        <td>// タスクマネージャーを起動</td>
+                    </tr>
+                    <tr>
+                        <th>Ctrl + Alt + Delete</th>
+                        <td>// セキュア・アテンション画面を起動</td>
+                        <td>/* 操作不能時に試してみるといいかも */</td>
+                    </tr>
+                    <tr>
+                        <th>Windows + L</th>
+                        <td>// 画面をロック</td>
+                        <td>/* 離席時に使用しよう */</td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer class="contents">
+        <section>
+            <h2 id="link">Link</h2>
+
+            <table class="ta2">
+                <tr>
+                    <th>
+                        <a href="" target="_blank">準備中</a>
+                    </th>
+                    <td>随時追加</td>
+                </tr>
+                <tr>
+                    <th>
+                        <a href="" target="_blank">準備中</a>
+                    </th>
+                    <td>随時追加</td>
+                </tr>
+                <tr>
+                    <th>
+                        <a href="" target="_blank">準備中</a>
+                    </th>
+                    <td>随時追加</td>
+                </tr>
+                <tr>
+                    <th>
+                        <a href="" target="_blank">準備中</a>
+                    </th>
+                    <td>随時追加</td>
+                </tr>
+                <tr>
+                    <th>
+                        <a href="" target="_blank">準備中</a>
+                    </th>
+                    <td>随時追加</td>
+                </tr>
+                <th>
+                    <a href="" target="_blank">準備中</a>
+                </th>
+                <td>随時追加</td>
+                </tr>
+                <th>
+                    <a href="" target="_blank">準備中</a>
+                </th>
+                <td>随時追加</td>
+                </tr>
+                <th>
+                    <a href="#" target="_blank">準備中</a>
+                </th>
+                <td>随時追加</td>
+                </tr>
+                <th>
+                    <a href="#" target="_blank">準備中</a>
+                </th>
+                <td>随時追加</td>
+                </tr>
+                <th>
+                    <a href="#" target="_blank">準備中</a>
+                </th>
+                <td>随時追加</td>
+                </tr>
+                <th>
+                    <a href="#" target="_blank">準備中</a>
+                </th>
+                <td>随時追加</td>
+                </tr>
+                <th>
+                    <a href="#" target="_blank">準備中</a>
+                </th>
+                <td>随時追加</td>
+                </tr>
+                <th>
+                    <a href="#" target="_blank">準備中</a>
+                </th>
+                <td>随時追加</td>
+                </tr>
+                <th>
+                    <a href="#" target="_blank">準備中</a>
+                </th>
+                <td>随時追加</td>
+                </tr>
+            </table>
+        </section>
+        <div class="sns">
+            <a href="https://twitter.com/0xE4F90A" target="_blank">Twitter</a>
+        </div>
+
+        <p class="copyright" class="copyright">&copy; 2023 -
+            <script>document.write(new Date().getFullYear());</script> 0xE4F90A.
+        </p>
+    </footer>
+    <a id="top-button" href="#top">^</a>
+</body>
+
+</html>
