@@ -159,7 +159,7 @@ game
 }
 
 #game .game-content {
-    display: flex;
+/*     display: flex; */
 }
 
 #game .game-item {
