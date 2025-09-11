@@ -1,0 +1,119 @@
+:root {
+  --bg: #0f1218;
+  --card: #151a22;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --accent: #4da3ff;
+  --danger: #ff6578;
+  --border: #223042;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  background: radial-gradient(1200px 800px at 20% -10%, #1a2330, #0e131a 60%, #0a0d12 100%), var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 860px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  letter-spacing: .02em;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+
+.row {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+label {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+input[type="number"], textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0f151d;
+  color: var(--text);
+  outline: none;
+}
+
+input[type="number"]:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77,163,255,.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 180px;
+  line-height: 1.5;
+  tab-size: 4;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+button {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, #1f2a3a, #182233);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform .06s ease, box-shadow .06s ease, border-color .2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(77,163,255,.15);
+}
+
+button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.status {
+  min-height: 1.2em;
+  color: var(--muted);
+  margin: 6px 2px 0 2px;
+  font-size: .92rem;
+}
+
+.status.error {
+  color: var(--danger);
+}

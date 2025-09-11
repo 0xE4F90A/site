@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>32bit 乱数ジェネレータ 負数対応ver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1>32bit 乱数ジェネレータ 負数対応ver</h1>
+
+        <form id="randForm" class="card" autocomplete="off">
+            <div class="row">
+                <label for="min">最小値 (-2147483648～2147483647)</label>
+                <input id="min" name="min" type="number" step="1" min="-2147483648" max="2147483647" value="-2147483648"
+                    required>
+            </div>
+
+            <div class="row">
+                <label for="max">最大値 (-2147483648～2147483647)</label>
+                <input id="max" name="max" type="number" step="1" min="-2147483648" max="2147483647" value="2147483647"
+                    required>
+            </div>
+
+            <div class="row">
+                <label for="count">生成する個数 (1～1,000,000)</label>
+                <input id="count" name="count" type="number" step="1" min="1" max="1000000" value="1000" required>
+            </div>
+
+            <div class="row actions">
+                <button type="submit" id="generateBtn">生成</button>
+                <button type="submit" id="generateUniqueBtn">生成 (重複なし)</button>
+                <button type="button" id="downloadBtn" disabled>結果ダウンロード (.txt)</button>
+                <button type="button" id="clearBtn">クリア</button>
+            </div>
+
+            <p id="status" class="status" aria-live="polite"></p>
+        </form>
+
+        <section class="card">
+            <div class="row">
+                <label for="output">生成結果</label>
+                <textarea id="output" rows="14" spellcheck="false" placeholder="ここに生成結果が表示されます (1行1数値)"></textarea>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        (() => {
+            "use strict";
+
+            /** 定数 */
+            const INT32_MIN = -2147483648;
+            const INT32_MAX = 2147483647;
+            const MAX_COUNT = 1000000;     // 上限
+            const TWO32 = 0x100000000;     // 2^32
+
+            /** 要素参照 */
+            const form = document.getElementById("randForm");
+            const minInput = document.getElementById("min");
+            const maxInput = document.getElementById("max");
+            const countInput = document.getElementById("count");
+            const generateBtn = document.getElementById("generateBtn");
+            const generateUniqueBtn = document.getElementById("generateUniqueBtn");
+            const downloadBtn = document.getElementById("downloadBtn");
+            const clearBtn = document.getElementById("clearBtn");
+            const outputArea = document.getElementById("output");
+            const statusEl = document.getElementById("status");
+
+            /** 忙状態 切り替え */
+            function setBusy(isBusy) {
+                generateBtn.disabled = isBusy;
+                generateUniqueBtn.disabled = isBusy;
+                downloadBtn.disabled = isBusy || !outputArea.value;
+                minInput.disabled = isBusy;
+                maxInput.disabled = isBusy;
+                countInput.disabled = isBusy;
+            }
+
+            /**
+             * Uint32 乱数供給器(バッファリング)
+             * getRandomValues: 1回あたり上限（≈ 65536 bytes）厳守
+             */
+            function makeUint32Rng() {
+                const MAX_BYTES_PER_CALL = 65536;
+                const CHUNK_LEN = Math.floor(MAX_BYTES_PER_CALL / 4); // 4 bytes
+                let buf = new Uint32Array(CHUNK_LEN);
+                let idx = buf.length;
+
+                return function nextUint32() {
+                    if (idx >= buf.length) {
+                        crypto.getRandomValues(buf);
+                        idx = 0;
+                    }
+                    const v = buf[idx];
+                    idx += 1;
+                    return v;
+                };
+            }
+
+            /** 0 <= x < n 一様整数を返す (リジェクション剰余バイアス回避) */
+            function makeNextBelow() {
+                const nextUint32 = makeUint32Rng();
+                return function nextBelow(n) {
+                    if (!Number.isSafeInteger(n) || n <= 0 || n > TWO32) {
+                        throw new Error("内部エラー: nextBelow 範囲不正");
+                    }
+                    const limit = Math.floor(TWO32 / n) * n;
+                    let u = nextUint32();
+                    while (u >= limit) {
+                        u = nextUint32();
+                    }
+                    return u % n;
+                };
+            }
+
+            /** [min, max] 均等分布乱数 (単発) */
+            function makeNextInRange(min, max) {
+                const nextBelow = makeNextBelow();
+                const span = (max - min) + 1;
+                if (span <= 0 || span > TWO32) {
+                    throw new Error("範囲幅が不正です。");
+                }
+                if (span === 1) {
+                    return () => min;
+                }
+                return () => min + nextBelow(span);
+            }
+
+            /** 入力検証 */
+            function validateInputs(min, max, count) {
+                if (!Number.isInteger(min) || !Number.isInteger(max)) {
+                    throw new Error("最小値/最大値は整数を入力してください。");
+                }
+                if (min < INT32_MIN || min > INT32_MAX || max < INT32_MIN || max > INT32_MAX) {
+                    throw new Error("最小値/最大値は 32bit 符号付き整数の範囲内で指定してください。");
+                }
+                if (min > max) {
+                    throw new Error("最小値が最大値を超えています。");
+                }
+                if (!Number.isInteger(count) || count < 1 || count > MAX_COUNT) {
+                    throw new Error(`生成個数は 1～${MAX_COUNT} の範囲で指定してください。`);
+                }
+                if (!window.crypto || !window.crypto.getRandomValues) {
+                    throw new Error("このブラウザは crypto.getRandomValues に対応していません。");
+                }
+            }
+
+            /** ステータス表示 */
+            function setStatus(msg, isError = false) {
+                statusEl.textContent = msg;
+                statusEl.classList.toggle("error", isError);
+            }
+
+            /** 通常 (重複あり) 生成 */
+            async function generate() {
+                try {
+                    setStatus("");
+                    downloadBtn.disabled = true;
+
+                    const min = Number(minInput.value);
+                    const max = Number(maxInput.value);
+                    const count = Number(countInput.value);
+
+                    validateInputs(min, max, count);
+
+                    setBusy(true);
+                    setStatus("生成中…");
+
+                    const nextInt = makeNextInRange(min, max);
+
+                    const result = new Array(count);
+                    const yieldEvery = 100000; // UI のカクつき軽減
+                    for (let i = 0; i < count; i++) {
+                        result[i] = String(nextInt());
+                        if ((i + 1) % yieldEvery === 0) {
+                            setStatus(`生成中… ${i + 1} / ${count}`);
+                            await new Promise(r => setTimeout(r));
+                        }
+                    }
+
+                    outputArea.value = result.join("\n");
+                    setStatus(`生成完了：${count} 件`);
+                    downloadBtn.disabled = false;
+                }
+                catch (e) {
+                    setStatus(e.message || String(e), true);
+                }
+                finally {
+                    setBusy(false);
+                }
+            }
+
+            /**
+             * 重複なし生成(Floyd)
+             * - 範囲[min, max] から count 個 一様無作為抽出
+             * - メモリ O(count), 時間 O(count)
+             */
+            async function generateUnique() {
+                try {
+                    setStatus("");
+                    downloadBtn.disabled = true;
+
+                    const min = Number(minInput.value);
+                    const max = Number(maxInput.value);
+                    const count = Number(countInput.value);
+
+                    validateInputs(min, max, count);
+
+                    const span = (max - min) + 1;
+                    if (count > span) {
+                        throw new Error(`重複なし生成は失敗：範囲幅 ${span.toLocaleString()} に対して個数 ${count.toLocaleString()} は多すぎます。`);
+                    }
+
+                    setBusy(true);
+                    setStatus("重複なし生成中…");
+
+                    const nextBelow = makeNextBelow();
+
+                    // --- Floyd 一様抽出 ---
+                    const chosen = new Set();          // 選んだ [0..span-1] 保持
+                    const start = span - count;
+                    const yieldEvery = 100000;
+
+                    let t = 0;
+                    for (let j = start; j < span; j++) {
+                        const r = nextBelow(j + 1);      // 0..j
+                        const x = chosen.has(r) ? j : r; // r が既出なら j 採用
+                        chosen.add(x);
+
+                        if (++t % yieldEvery === 0) {
+                            setStatus(`重複なし生成中… ${t} / ${count}`);
+                            await new Promise(r => setTimeout(r));
+                        }
+                    }
+
+                    // 数値配列に変換
+                    const result = new Array(count);
+                    {
+                        let i = 0;
+                        for (const v of chosen) { result[i++] = min + v; }
+                    }
+
+                    // --- Fisher–Yates シャッフル (CSPRNG) ---
+                    for (let i = result.length - 1; i > 0; i--) {
+                        const j = nextBelow(i + 1);      // 0..i 一様抽出
+                        const tmp = result[i];
+                        result[i] = result[j];
+                        result[j] = tmp;
+                    }
+
+                    // 出力
+                    outputArea.value = result.join("\n");
+                    setStatus(`重複なしで生成完了：${count} 件（ランダム順）`);
+                    downloadBtn.disabled = false;
+                }
+                catch (e) {
+                    setStatus(e.message || String(e), true);
+                }
+                finally {
+                    setBusy(false);
+                }
+            }
+
+            /** ダウンロード処理 (CRLF、UTF-8) */
+            function downloadTxt() {
+                const text = outputArea.value;
+                if (!text) {
+                    setStatus("ダウンロードできる内容がありません。先に生成してください。", true);
+                    return;
+                }
+
+                const crlf = text.replace(/\n/g, "\r\n");
+                const blob = new Blob([crlf], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+
+                const now = new Date();
+                const y = String(now.getFullYear());
+                const m = String(now.getMonth() + 1).padStart(2, "0");
+                const d = String(now.getDate()).padStart(2, "0");
+                const hh = String(now.getHours()).padStart(2, "0");
+                const mm = String(now.getMinutes()).padStart(2, "0");
+                const ss = String(now.getSeconds()).padStart(2, "0");
+
+                a.href = url;
+                a.download = `random_int32_${y}${m}${d}_${hh}${mm}${ss}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            }
+
+            /** 値クリア */
+            function clearAll() {
+                outputArea.value = "";
+                downloadBtn.disabled = true;
+                setStatus("クリアしました。");
+            }
+
+            /** イベント */
+            form.addEventListener("submit", (ev) => {
+                ev.preventDefault();
+                generate();
+            });
+
+            generateUniqueBtn.addEventListener("click", generateUnique);
+            downloadBtn.addEventListener("click", downloadTxt);
+            clearBtn.addEventListener("click", clearAll);
+        })();
+    </script>
+</body>
+
+</html>
