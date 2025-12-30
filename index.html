@@ -1,146 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>レヲン's</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="stylesheet.css">
-      <link rel="stylesheet" href="responsive.css">
-      <script src="script.js" defer></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0f19" />
+  <title>レヲン's</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
 </head>
+
 <body>
-  <header>
-    <div class="header-left">
-      <div id="header-logo">>Hello.</div>
+  <header class="header">
+    <div class="header__inner">
+      <button class="brand" id="brandBtn" type="button" aria-label="トップへ">
+        <span class="brand__mark">›</span>
+        <span class="brand__text">Hello.</span>
+      </button>
+
+      <nav class="nav" aria-label="メインメニュー">
+        <a class="nav__link" href="info.html" target="_blank" rel="noreferrer">綾鷹</a>
+        <a class="nav__link" href="questions.html" target="_blank" rel="noreferrer">Quiz</a>
+        <a class="nav__link" href="#sites">便利サイト</a>
+
+        <div class="nav__actions">
+          <button class="btn btn--ghost" id="loginOpen" type="button">ログイン</button>
+          <button class="btn btn--primary" id="signupOpen" type="button">新規登録</button>
+        </div>
+      </nav>
+
+      <button class="burger" id="burgerBtn" type="button" aria-label="メニュー" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="header-right">
-      <div id="login-show" class="header-item">ログイン</div>
-      <a href="info.html" target="_blank" class="header-item">綾鷹</a>
-      <a href="questions.html" target="_blank" class="header-item">Quiz</a>
-      <a href="#webs" class="header-item">便利サイト</a>
+
+    <div class="mobileNav" id="mobileNav" aria-hidden="true">
+      <a class="mobileNav__link" href="info.html" target="_blank" rel="noreferrer">綾鷹</a>
+      <a class="mobileNav__link" href="questions.html" target="_blank" rel="noreferrer">Quiz</a>
+      <a class="mobileNav__link" href="#sites">便利サイト</a>
+      <div class="mobileNav__actions">
+        <button class="btn btn--ghost" id="loginOpen_m" type="button">ログイン</button>
+        <button class="btn btn--primary" id="signupOpen_m" type="button">新規登録</button>
+      </div>
     </div>
   </header>
+
   <main>
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__badge">Utility Collection</div>
+        <h1 class="hero__title">便利サイトを、気持ちよく。</h1>
+        <p class="hero__lead">
+          よく使うサイトをカードで整理。検索・お気に入りもサクッと。
+        </p>
 
-    <div class="signup-modal-wrapper" id="signup-modal">
-      <div class="modal">
-        <div class="close-modal">
-          <i class="fa fa-2x fa-times"></i>
-        </div>
-        
-        
-        <div id="signup-form">
-          <h2>Emailで新規登録</h2>
-          <form action="#">
-            <input class="form-control" type="text" placeholder="メールアドレス">
-            <input class="form-control" type="password" placeholder="パスワード">
-            <div id="signup_btn">新規登録</div>
-          </form>
+        <div class="hero__controls">
+          <label class="search" aria-label="サイト検索">
+            <span class="search__icon" aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="サイト名 / キーワードで検索" autocomplete="off" />
+          </label>
+
+          <div class="toggleRow">
+            <label class="toggle">
+              <input id="onlyFav" type="checkbox" />
+              <span>お気に入りのみ</span>
+            </label>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="login-modal-wrapper" id="login-modal">
-      <div class="modal">
-        <div class="close-modal">
-          <i class="fa fa-2x fa-times"></i>
-        </div>
-        
-        
-        <div id="login-form">
-          <h2>ログインフォーム</h2>
-          <form action="#">
-            <input class="form-control" id="id" type="text" placeholder="ID">
-            <input id="pass" class="form-control" name="pass" type="password" placeholder="パスワード">
-            <div id="submit_btn">ログイン</div>
-          </form>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="top-wrapper">
+    <section id="sites" class="section">
       <div class="container">
-        <h1>Hello World.</h1>
-        <h1>Final Destination.</h1>
-        <p>私たちは架空の製品でお客様を架空にする架空の架空です。</p>
-        <p>架空の架空で架空によって、架空ゆえに架空からの架空、つまり架空です。</p>
-        <div class="btn-wrapper">
-          <div class="btn signup signup-show">新規登録</div>
-          <p>or</p>
-          <a href="#" class="btn facebook">
-            <span class="fa fa-facebook"></span>Facebookで登録</a>
-          <a href="#" class="btn twitter">
-            <span class="fa fa-twitter"></span>Twitterで登録</a>
+        <div class="section__head">
+          <h2 class="section__title">よく使うサイト</h2>
+          <p class="section__sub">カードをクリックで説明を開閉。★でお気に入り登録。</p>
         </div>
+
+        <div class="grid" id="frequentGrid" aria-live="polite"></div>
+
+        <div class="divider"></div>
+
+        <div class="section__head">
+          <h2 class="section__title">その他のサイト</h2>
+          <p class="section__sub">軽量なリンク集（分類ごと）。</p>
+        </div>
+
+        <div class="pillGroups" id="otherGroups" aria-live="polite"></div>
       </div>
-    </div>
-    <!------------------------------------------------------------->
-    <div id="webs" class="web-wrapper">
-       <h2>よく使うサイト一覧</h2>
+    </section>
 
-        <div class="websites">
-          <div class="web">
-              <a class="site" href="https://www.google.com/?hl=ja" target="_blank">Google</a>
-            <p class="text-contents">Google (グーグル)は、インターネット関連のサービスと製品に特化したアメリカ合衆国の企業（LLC）。世界最大の検索エンジン、オンライン広告、クラウドコンピューティング、ソフトウェア、ハードウェア関連の事業がある。アメリカ合衆国の主要なIT企業で、 ビッグ5の一つ</p>
-          </div>
-          <div class="web">
-              <a class="site" href="https://www.yahoo.co.jp/" target="_blank">Yahoo!</a>
-            <p class="text-contents">Yahoo(ヤフー)は、インターネット関連サービスを展開するアメリカのIT企業。カリフォルニア州サニーベールに本社を置く。2021年から50億ドルで買収したアポロ・グローバル・マネジメントが所有している。</p>
-          </div>
-          <div class="web">
-              <a class="site" href="https://www.youtube.com/" target="_blank">YouTube</a>
-            <p class="text-contents">YouTube(ユーチューブ)は、カリフォルニア州サンブルーノに本社を置くアメリカのオンライン動画共有プラットフォームである。YouTubeは、アレクサ・インターネットランキングによると、Google検索に次いで2番目にアクセス数の多いウェブサイトである。</p>
-          </div>
-          <div class="web">
-              <a class="site" href="https://www.amazon.co.jp/" target="_blank">Amazon</a>
-            <p class="text-contents">Amazon.co.jp(アマゾンドットシーオードットジェイピー)は、アメリカ合衆国「Amazon.com, Inc.」の日本の現地法人アマゾンジャパン合同会社(Amazon Japan G.K.)が運営する、大手ECサイトである。</p>
-          </div>
-        </div>
-
-        <div class="websites2">
-
-          <h2 class="other">その他のサイト</h2>
-
-          <div class="web-group">
-            <a class="site2" href="https://mail.aol.com/webmail-std/ja-jp/suite" target="_blank">AOL</a>
-
-            <a class="site2" href="https://auctions.yahoo.co.jp/#" target="_blank">ヤフオク</a>
-
-            <a class="site2" href="https://stopwatch.onl.jp/" target="_blank">ストップウォッチ</a>
-
-            <a class="site2" href="https://delivery.skylark.co.jp/brand/gusto?initialized=true&display_mode=grid&category=category_GT0305" target="_blank">ガスト</a>
-          </div>
-
-          <div class="web-group">
-            <a class="site2" href="https://ja.wikipedia.org/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8" target="_blank">Wikipedia</a>
-
-            <a class="site2" href="https://www.nicovideo.jp/" target="_blank">ニコニコ動画</a>
-
-            <a class="site2" href="https://timer.onl.jp/" target="_blank">タイマー</a>
-
-            <a class="site2" href="https://jp.mercari.com/" target="_blank">メルカリ</a>
-          </div>
-
-          <div class="web-group">
-            <a class="site2" href="https://www.google.co.jp/maps/@34.5495773,135.4981373,14z?hl=ja" target="_blank">Googleマップ</a>
-
-            <a class="site2" href="https://www.yodobashi.com/" target="_blank">ヨドバシカメラ</a>
-
-            <a class="site2" href="https://www.webdentaku.com/" target="_blank">Web電卓</a>
-
-            <a class="site2" href="http://koyomi8.com/" target="_blank">こよみのページ</a>
-          </div>
-
-        </div>
-        <div class="clear"></div>
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span class="footer__text">© Utility Collection</span>
+        <a class="footer__top" href="#" id="toTop">Top</a>
       </div>
-    </div>
-    
+    </footer>
   </main>
-  <footer>
 
-  </footer>
-  </body>
+  <!-- Login Modal -->
+  <dialog class="dialog" id="loginDialog" aria-label="ログインフォーム">
+    <form method="dialog" class="dialog__panel">
+      <div class="dialog__head">
+        <h3>ログイン</h3>
+        <button class="iconBtn" value="cancel" aria-label="閉じる" type="submit">×</button>
+      </div>
+
+      <div class="dialog__body">
+        <label class="field">
+          <span>ID</span>
+          <input id="loginId" type="text" placeholder="ID" autocomplete="username" />
+        </label>
+        <label class="field">
+          <span>パスワード</span>
+          <input id="loginPass" type="password" placeholder="パスワード" autocomplete="current-password" />
+        </label>
+
+        <p class="hint">
+          ※デモUIです。パスワードをURLに含める等は危険なので行いません。
+        </p>
+      </div>
+
+      <div class="dialog__foot">
+        <button class="btn btn--ghost" value="cancel" type="submit">キャンセル</button>
+        <button class="btn btn--primary" id="loginBtn" type="button">ログイン</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Signup Modal -->
+  <dialog class="dialog" id="signupDialog" aria-label="新規登録フォーム">
+    <form method="dialog" class="dialog__panel">
+      <div class="dialog__head">
+        <h3>新規登録</h3>
+        <button class="iconBtn" value="cancel" aria-label="閉じる" type="submit">×</button>
+      </div>
+
+      <div class="dialog__body">
+        <label class="field">
+          <span>メールアドレス</span>
+          <input id="signupEmail" type="email" placeholder="mail@example.com" autocomplete="email" />
+        </label>
+        <label class="field">
+          <span>パスワード</span>
+          <input id="signupPass" type="password" placeholder="パスワード" autocomplete="new-password" />
+        </label>
+      </div>
+
+      <div class="dialog__foot">
+        <button class="btn btn--ghost" value="cancel" type="submit">キャンセル</button>
+        <button class="btn btn--primary" id="signupBtn" type="button">登録</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
 </html>
